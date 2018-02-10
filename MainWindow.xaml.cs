@@ -12,6 +12,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -23,13 +24,13 @@ namespace PDFTutorial
     /// </summary>
     public partial class MainWindow : Window
     {
-   
+
         public MainWindow()
         {
-           
+
             InitializeComponent();
-         
-      
+
+
             this.Loaded += new RoutedEventHandler(Window1_Loaded);
 
         }
@@ -41,6 +42,18 @@ namespace PDFTutorial
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            Storyboard sb = Resources["sbShowLeftMenu"] as Storyboard;
+            sb.Begin(layer);
+        }
+
+        private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Storyboard sb = Resources["sbHideLeftMenu"] as Storyboard;
+            sb.Begin(layer);
         }
     }
 }
